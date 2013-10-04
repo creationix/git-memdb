@@ -1,6 +1,6 @@
 {
   "name": "git-memdb",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An in-memory js-git database.",
   "main": "memdb.js",
   "scripts": {
