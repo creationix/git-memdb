@@ -1,0 +1,23 @@
+{
+  "name": "git-memdb",
+  "version": "0.2.0",
+  "description": "An in-memory js-git database.",
+  "main": "memdb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/creationix/git-memdb.git"
+  },
+  "keywords": [
+    "js-git",
+    "memory",
+    "database"
+  ],
+  "author": "Tim Caswell <tim@creationix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/creationix/git-memdb/issues"
+  }
+}
