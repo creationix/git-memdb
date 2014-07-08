@@ -13,8 +13,8 @@ function makeAsync(fn, callback) {
 module.exports = function () {
 
   // Store everything in ram!
-  var objects;
-  var others;
+  var objects = {};
+  var others = {};
   var isHash = /^[a-z0-9]{40}$/;
 
   return {
