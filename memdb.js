@@ -69,16 +69,50 @@ module.exports = function () {
     }, callback);
   }
 
+  function referenceParts(ref) {
+    if (ref.substr(-1) === '/') {
+      ref = ref.substr(0, ref.length - 1);
+    }
+    return ref.split('/');
+  }
+
+  function uniq(list) {
+    var obj = {};
+    for (var i = 0; i < list.length; i++) {
+      obj[list[i]] = true;
+    }
+    var arr = [];
+    for (var key in obj) {
+      arr.push(key);
+    }
+    arr.sort();
+    return arr;
+  }
+
   function keys(prefix, callback) {
     return makeAsync(function () {
       var list = Object.keys(others);
       if (!prefix) return list;
-      var length = prefix.length;
-      return list.filter(function (key) {
-        return key.substr(0, length) === prefix;
+      var prefixParts = referenceParts(prefix);
+      var filtered = list.filter(function (key) {
+        var keyParts = referenceParts(key);
+        if (prefixParts.length >= keyParts.length) {
+          return false;
+        }
+        for (var i = 0; i < prefixParts.length && i < keyParts.length; i++) {
+          if (keyParts[i] !== prefixParts[i]) {
+            return false;
+          }
+        }
+        return true;
       }).map(function (key) {
-        return key.substr(length);
+        var keyParts = referenceParts(key);
+        return keyParts[prefixParts.length];
       });
+      if (filtered.length === 0) {
+        return;
+      }
+      return uniq(filtered);
     }, callback);
   }
 
